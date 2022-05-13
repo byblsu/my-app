@@ -1,11 +1,14 @@
 import { Component } from "react";
 import {
-    BrowserRouter,
-    Routes,
-    Route,
-  } from "react-router-dom";
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import Dashboard from "../pages/dashboard/dashboard";
   import Login from '../pages/Login/Login';
+import UserList from "../pages/user/UserList";
+import AppLayout from "./BppLayout";
 
 
 
@@ -14,14 +17,26 @@ class View extends Component {
 
     render() {
          return (
-
-<BrowserRouter>
-    <Routes>
-      <Route path="/Login" element={<Login />}>
-      </Route>
-      <Route path="/dashboard" element={<Dashboard/>}></Route>
-    </Routes>
-  </BrowserRouter>
+          
+          <Router>
+            <Switch>
+              <Route path="/login">
+                <Login/>
+              </Route>
+              <Route path="/dashboard">
+                <AppLayout>
+                  <Dashboard/>
+                </AppLayout>
+                
+              </Route>
+              <Route path="/user/list">
+                <AppLayout>
+                  <UserList/>
+                </AppLayout>
+                
+              </Route>
+            </Switch>
+          </Router>
 
 
          );

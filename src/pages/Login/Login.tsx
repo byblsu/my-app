@@ -5,10 +5,15 @@ import { login } from "../../api/Login"
 import { set } from "../../utils/storage"
 import { AxiosPromise } from "axios"
 import { request } from "https"
+import { RouteComponentProps, withRouter } from "react-router-dom"
+// import { withRouter } from "react-router-dom"
 
-interface IPorps extends Route
+interface IPorps extends RouteComponentProps {}
 
-class Login extends Component {
+
+
+
+class Login extends Component<IPorps> {
 
 
 
@@ -24,10 +29,13 @@ class Login extends Component {
       if (response.code === 0){
         // const {token}=response.data
         // set(`token`,token)
+        
         sessionStorage.setItem("token",response.data.token)
           message.success('success')
           console.log(response)
           console.log(response.msg)
+          this.props.history.push('/dashboard')
+
       } else {
         message.error(response.msg)
         console.log(response)
@@ -76,4 +84,4 @@ class Login extends Component {
 
 }
 
-export default Login
+export default withRouter(Login);
