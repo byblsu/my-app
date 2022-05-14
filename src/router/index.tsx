@@ -1,4 +1,5 @@
 import React, {ReactNode, lazy} from "react";
+// import type * as React from 'react';
 import {
     HomeOutlined,
     DashboardOutlined,
@@ -14,6 +15,10 @@ const UserList = lazy(() => import("../pages/user/UserList"))
 
 
 export interface IRoute {
+    type: 'group';
+    label?: React.ReactNode;
+    // children?: ItemType[];
+
     exact?: boolean
     path: string
     title: string
@@ -25,7 +30,15 @@ export interface IRoute {
 
 export const routes: IRoute[] = [
     {
-        path: '/admin/dashboard',
+        type: 'group',
+        path: '/dashboard',
+        title: 'route.index',
+        icon: <HomeOutlined/>
+
+    },
+    {
+        type: 'group',
+        path: '/login',
         title: 'route.index',
         icon: <HomeOutlined/>
 
@@ -35,12 +48,14 @@ export const routes: IRoute[] = [
 
 export const unAuthRoutes: IRoute[] = [
     {
+        type: 'group',
         path: '/login',
         exact: true,
         title: 'page404',
         component: <Login/>
     },
     // {
+    //     type: 'group';
     //     path: '*',
     //     title: 'page404',
     //     component: <Page404/>
