@@ -4,6 +4,7 @@ import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { Component } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { MenuInfo } from 'rc-menu/lib/interface'
+import './css/BppLayout.css'
 
 interface IPorps extends RouteComponentProps {
     items4: ItemType[] | undefined

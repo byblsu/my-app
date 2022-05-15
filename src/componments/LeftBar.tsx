@@ -4,6 +4,8 @@ import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MenuInfo } from 'rc-menu/lib/interface'
 import React, { Component } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
+import './css/BppLayout.css'
+
 
 interface Iprop extends RouteComponentProps{
     items3: ItemType[] | undefined
@@ -11,9 +13,12 @@ interface Iprop extends RouteComponentProps{
 
  class LeftBar extends Component<Iprop> {
      myClick=(item:MenuInfo)=>{
+       console.log('----')
          console.log(item);
+         console.log('====');
          
-        // this.props.history.push(item.key)
+         
+        this.props.history.push(item.key)
      }
   render() {
     return (
@@ -24,6 +29,7 @@ interface Iprop extends RouteComponentProps{
           onClick={this.myClick}
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
+          // onSelect={}
           style={{
             height: '100%',
             borderRight: 0,

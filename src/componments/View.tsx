@@ -8,7 +8,7 @@ import {
 import Dashboard from "../pages/dashboard/dashboard";
   import Login from '../pages/Login/Login';
 import UserList from "../pages/user/UserList";
-import { IRoute, routes } from "../router";
+import { IRoute, leftBarRoutes, routes } from "../router";
 import AppLayout from "./BppLayout";
 
 
@@ -78,7 +78,7 @@ class View extends Component {
               </Route> */}
 
               <AppLayout>
-               {this.generateRoute(routes)}
+               {this.generateRoute(leftBarRoutes)}
               </AppLayout>
 
 

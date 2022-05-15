@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Children, Component } from 'react'
 import { Breadcrumb, Layout, Menu, MenuProps } from 'antd'
-import { Content, Header } from 'antd/lib/layout/layout'
+import {  Content, Header } from 'antd/lib/layout/layout'
 import Sider from 'antd/lib/layout/Sider'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import LeftBar from './LeftBar';
-import { routes } from '../router';
+import { leftBarRoutes, routes } from '../router';
 import TopBar from './TopBar';
 import SubTitle from './SubTitle';
-
+import './css/BppLayout.css'
 
 
 interface IPorps {
@@ -32,31 +32,64 @@ interface IPorps {
 
       // [UserOutlined, LaptopOutlined, NotificationOutlined]
 
-      const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-        (icon, index) => {
-          const key = String(index + 1);
+      // const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+      //   (icon, index) => {
+      //     const key = String(index + 1);
       
-          return {
-            key: `sub${key}`,
-            // icon: React.createElement(icon),
-            label: `仪表板 ${key}`,
+      //     return {
+      //       key: `sub${key}`,
+      //       // icon: React.createElement(icon),
+      //       label: `仪表板 ${key}`,
       
-            children: new Array(2).fill(null).map((_, j) => {
-              const subKey = index * 2 + j + 1;
-              return {
-                key: subKey,
-                label: `子选项${subKey}`,
-              };
-            }),
-          };
-        },
-      )as MenuProps['items'] ;
+      //       children: new Array(2).fill(null).map((_, j) => {
+      //         const subKey = index * 2 + j + 1;
+      //         return {
+      //           key: subKey,
+      //           label: `子选项${subKey}`,
+      //         };
+      //       }),
+      //     };
+      //   },
+      // )as MenuProps['items'] ;
+
+      const items2: MenuProps['items'] = leftBarRoutes.map((key1) => {
+        
+        // console.log("---");
+        // console.log(key)
+        // console.log(key.children)
+        // console.log(key1.children);
+        // console.log("---");
+        const ch = key1.children?.map((key2) => {
+
+          const ch2 = key2.children?.map((key3) => {
+            return {
+              key: key3.key,
+              label: key3.label,
+              // children:
+            }
+          })
+
+
+         return { 
+           key: key2.key,
+           label: key2.label,
+           children: ch2
+          }
+        }) 
+        
+
+        return {
+          key: key1.path,
+          label: key1.path,
+          children:ch
+        }
+      }) as MenuProps['items'] ;
 
 
 
     return (
 
-      <>
+      // <>
 
  <Layout>
     {/* <Header className="header">
@@ -67,6 +100,8 @@ interface IPorps {
     <TopBar items4={items1}>
 
     </TopBar>
+
+    
 
     <Layout>
        {/* <Sider width={200} className="site-layout-background">
@@ -104,7 +139,7 @@ interface IPorps {
           style={{
             padding: 24,
             margin: 0,
-            minHeight: 280,
+            minHeight: 1000,
           }}
         >
             {this.props.children}
@@ -114,7 +149,7 @@ interface IPorps {
     </Layout>
   </Layout>
 
-      </>
+      // </>
     )
   }
 }

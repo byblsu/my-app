@@ -3,6 +3,7 @@ import { match } from 'assert'
 import React, { Component } from 'react'
 import { matchPath, RouteComponentProps, withRouter } from 'react-router-dom'
 import { IRoute, routes } from '../router'
+import './css/BppLayout.css'
 
 interface IPorps extends RouteComponentProps {
 
@@ -49,7 +50,7 @@ interface IState {
           }}
         >
             {
-                this.state.routeList.map(r => (<Breadcrumb.Item key={r.path}>{r.title}</Breadcrumb.Item>))
+                this.state.routeList.map(r => (<Breadcrumb.Item key={r.path}>{r.path}</Breadcrumb.Item>))
             }
           {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>List</Breadcrumb.Item>
