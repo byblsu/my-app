@@ -9,7 +9,7 @@ import Dashboard from "../pages/dashboard/dashboard";
   import Login from '../pages/Login/Login';
 import UserList from "../pages/user/UserList";
 import { IRoute, leftBarRoutes, routes } from "../router";
-import AppLayout from "./BppLayout";
+import {AppLayout} from "./BppLayout";
 
 
 

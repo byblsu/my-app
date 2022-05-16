@@ -1,8 +1,9 @@
+// import { Breadcrumb } from 'antd'
 import { Breadcrumb } from 'antd'
 import { match } from 'assert'
 import React, { Component } from 'react'
 import { matchPath, RouteComponentProps, withRouter } from 'react-router-dom'
-import { IRoute, routes } from '../router'
+import { IRoute, leftBarRoutes, routes } from '../router'
 import './css/BppLayout.css'
 
 interface IPorps extends RouteComponentProps {
@@ -28,7 +29,12 @@ interface IState {
             if (r.children) {
                 arr.push(...SubTitle.getRouterList(r.children,path)) 
             }
+            console.log('-----')
+            console.log(path)
+            console.log(r.path)
             console.log(matchPath(path,r.path))
+            console.log('-----');
+            
             if (matchPath(path,r.path) !== null ) {
                 arr.push(r)
             }

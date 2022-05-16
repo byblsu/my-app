@@ -12,6 +12,7 @@ import Login from "../pages/Login/Login";
 import { MenuProps } from "antd";
 import Dashboard1 from "../pages/dashboard/select1/dashboard1";
 import Dashboard2 from "../pages/dashboard/select1/dashboard2";
+import { Component } from "react";
 
 
 const Dashboard =lazy(() => import("../pages/Login/Login"))
@@ -125,6 +126,15 @@ export const leftBarRoutes: IRoute[] = [
         path: '/login',
         title: 'route.index',
         icon: <HomeOutlined/>
+
+    },
+    {
+        key: '/user',
+        type: 'group',
+        path: '/user',
+        title: 'route.index',
+        icon: <HomeOutlined/>,
+        component: <UserList/>
 
     },
 ]

@@ -1,10 +1,11 @@
-import { Header } from 'antd/lib/layout/layout'
+// import { Header } from 'antd/lib/layout/layout'
 import Menu from 'antd/lib/menu'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { Component } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { MenuInfo } from 'rc-menu/lib/interface'
 import './css/BppLayout.css'
+import { Header } from './BppLayout'
 
 interface IPorps extends RouteComponentProps {
     items4: ItemType[] | undefined

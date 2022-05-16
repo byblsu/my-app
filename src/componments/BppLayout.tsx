@@ -1,13 +1,15 @@
 import React, { Children, Component } from 'react'
 import { Breadcrumb, Layout, Menu, MenuProps } from 'antd'
-import {  Content, Header } from 'antd/lib/layout/layout'
-import Sider from 'antd/lib/layout/Sider'
+// import {  Content, Header } from 'antd/lib/layout/layout'
+// import Sider from 'antd/lib/layout/Sider'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import LeftBar from './LeftBar';
 import { leftBarRoutes, routes } from '../router';
 import TopBar from './TopBar';
 import SubTitle from './SubTitle';
 import './css/BppLayout.css'
+
+const { Header, Content, Footer, Sider } = Layout;
 
 
 interface IPorps {
@@ -117,7 +119,7 @@ interface IPorps {
         />
       </Sider>  */}
 
-      <LeftBar items3={items2}></LeftBar>
+      <LeftBar items3={items2}  ></LeftBar>
       <Layout
         style={{
           padding: '0 24px 24px',
@@ -142,8 +144,10 @@ interface IPorps {
             minHeight: 1000,
           }}
         >
+            
             {this.props.children}
           Content
+            {this.props.children}
         </Content>
       </Layout>
     </Layout>
@@ -154,4 +158,6 @@ interface IPorps {
   }
 }
  
-export default AppLayout
+export   {AppLayout,Sider,Footer,Header}
+
+// export default Sider
