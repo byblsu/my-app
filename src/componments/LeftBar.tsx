@@ -14,7 +14,7 @@ interface Iprop extends RouteComponentProps{
 
  class LeftBar extends Component<Iprop> {
      myClick=(item:MenuInfo)=>{
-      //  console.log('----')
+      //  console.log('====')
       //    console.log(item);
       //    console.log('====');
          
@@ -23,7 +23,9 @@ interface Iprop extends RouteComponentProps{
      }
   render() {
 
-     
+    console.log('====')
+    console.log(this.props.items3)
+    console.log('====')
 
     return (
      <>
@@ -38,6 +40,7 @@ interface Iprop extends RouteComponentProps{
             height: '100%',
             borderRight: 0,
           }}
+          // icon ={this.props.items3.icon}
           items={this.props.items3}
         />
       </Sider> 

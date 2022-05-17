@@ -3,7 +3,7 @@ import { Breadcrumb } from 'antd'
 import { match } from 'assert'
 import React, { Component } from 'react'
 import { matchPath, RouteComponentProps, withRouter } from 'react-router-dom'
-import { IRoute, leftBarRoutes, routes } from '../router'
+import { IRoute, leftBarRoutes, unAuthRoutes } from '../router'
 import './css/BppLayout.css'
 
 interface IPorps extends RouteComponentProps {
@@ -25,7 +25,7 @@ interface IState {
 
     static getRouterList(routes:IRoute[],path:string): IRoute[] {
         let arr: IRoute[] = []
-        for (let r of routes) {
+        for (let r of unAuthRoutes) {
             if (r.children) {
                 arr.push(...SubTitle.getRouterList(r.children,path)) 
             }
@@ -44,7 +44,7 @@ interface IState {
 
      static getDerivedStateFromProps(props: Readonly<IPorps>, state: Readonly<IState>){
         return {
-            routeList: SubTitle.getRouterList(routes,props.location.pathname)
+            routeList: SubTitle.getRouterList(unAuthRoutes,props.location.pathname)
         }
      }
   render() {

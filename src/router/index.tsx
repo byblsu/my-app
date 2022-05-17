@@ -34,23 +34,23 @@ export interface IRoute {
 }
 
 
-export const routes: IRoute[] = [
-    {
-        key: '/dashboard',
-        type: 'group',
-        path: '/dashboard',
-        title: 'route.index',
-        icon: <HomeOutlined/>, 
-    },
-    {
-        key: '/login',
-        type: 'group',
-        path: '/login',
-        title: 'route.index',
-        icon: <HomeOutlined/>
+// export const routes: IRoute[] = [
+//     {
+//         key: '/dashboard',
+//         type: 'group',
+//         path: '/dashboard',
+//         title: 'route.index',
+//         icon: <HomeOutlined/>, 
+//     },
+//     {
+//         key: '/login',
+//         type: 'group',
+//         path: '/login',
+//         title: 'route.index',
+//         icon: <HomeOutlined/>
 
-    },
-]
+//     },
+// ]
 
 
 export const unAuthRoutes: IRoute[] = [
@@ -61,7 +61,21 @@ export const unAuthRoutes: IRoute[] = [
         exact: true,
         title: 'page404',
         component: <Login/>,
-        
+
+    },
+    {
+        key: '/dashboard',
+        type: 'group',
+        path: '/dashboard',
+        title: 'route.index',
+        icon: <HomeOutlined/>, 
+    },
+    {
+        key: '/dashboard111',
+        type: 'group',
+        path: '/dashboard111',
+        title: 'route.index',
+        icon: <HomeOutlined/>, 
     },
     // {
     //     type: 'group';
@@ -73,34 +87,34 @@ export const unAuthRoutes: IRoute[] = [
 
 export const leftBarRoutes: IRoute[] = [
     {
-        key: '/dashboard',
+        key: '/admin/dashboard',
         type: 'group',
-        path: '/dashboard',
+        path: '/admin/dashboard',
         title: 'route.index',
         icon: <HomeOutlined/>,
         children: [{
-            key: '/dashboard/select1',
-            label: '/dashboard/select1',
+            key: '/admin/dashboard/select1',
+            label: '/admin/dashboard/select1',
             type: 'group',
-            path: '/dashboard/select1',
+            path: '/admin/dashboard/select1',
             title: 'route.index',
-            icon: <HomeOutlined/>,
+            // icon: <HomeOutlined/>,
             component: <Dashboard/>,
             children: [
                 {
-                    key: '/dashboard/select1/choose1',
-                    label: '/dashboard/select1/choose1',
+                    key: '/admin/dashboard/select1/choose1',
+                    label: '/admin/dashboard/select1/choose1',
                     type: 'group',
-                    path: '/dashboard/select1/choose1',
+                    path: '/admin/dashboard/select1/choose1',
                     title: 'route.index',
                     // icon: <HomeOutlined/>,
                     component: <Dashboard1/>
                 },
                 {
-                    key: '/dashboard/select1/choose2',
-                    label: '/dashboard/select1/choose2',
+                    key: '/admin/dashboard/select1/choose2',
+                    label: '/admin/dashboard/select1/choose2',
                     type: 'group',
-                    path: '/dashboard/select1/choose2',
+                    path: '/admin/dashboard/select1/choose2',
                     title: 'route.index',
                     // icon: <HomeOutlined/>,
                     component: <Dashboard2/>
@@ -134,15 +148,26 @@ export const leftBarRoutes: IRoute[] = [
         path: '/user',
         title: 'route.index',
         icon: <HomeOutlined/>,
-        component: <UserList/>
+        component: <UserList/>,
+        children: [
+            {
+                key: '/admin/userlist/select1',
+                label: '/admin/userlist/select1',
+                type: 'group',
+                path: '/admin/userlist/select1',
+                title: 'route.index',
+                // icon: <HomeOutlined/>,
+                component: <Dashboard1/>
+            },
+        ]
 
     },
 ]
 
 
 
-const router: IRoute[] = [
-    ...routes
+const routes: IRoute[] = [
+    ...unAuthRoutes
 ]
 
-export default router
+export default routes

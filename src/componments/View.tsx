@@ -8,7 +8,7 @@ import {
 import Dashboard from "../pages/dashboard/dashboard";
   import Login from '../pages/Login/Login';
 import UserList from "../pages/user/UserList";
-import { IRoute, leftBarRoutes, routes } from "../router";
+import { IRoute, leftBarRoutes, unAuthRoutes } from "../router";
 import {AppLayout} from "./BppLayout";
 
 
@@ -22,7 +22,7 @@ class View extends Component {
             if (r?.children){
               return (
                 <Fragment key={r.path}>
-                  <Route path={r.path} key={r.path} exact={r.exact}>
+                  <Route path={r.path} key={r.path} exact={r.exact} >
                     {this.generateRoute(r.children)}
                   </Route>
                   
@@ -44,7 +44,7 @@ class View extends Component {
         }
             return (
               <>
-                  <Route path={r.path} key={r.path} exact={r.exact}>
+                  <Route path={r.path} key={r.path} exact={r.exact} >
                       {r.component}
                   </Route>
               </>

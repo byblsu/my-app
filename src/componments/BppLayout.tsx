@@ -4,7 +4,7 @@ import { Breadcrumb, Layout, Menu, MenuProps } from 'antd'
 // import Sider from 'antd/lib/layout/Sider'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import LeftBar from './LeftBar';
-import { leftBarRoutes, routes } from '../router';
+import { leftBarRoutes, unAuthRoutes } from '../router';
 import TopBar from './TopBar';
 import SubTitle from './SubTitle';
 import './css/BppLayout.css'
@@ -24,7 +24,7 @@ interface IPorps {
 
   render() {
 
-    const items1: MenuProps['items'] = routes.map(key => ({
+    const items1: MenuProps['items'] = unAuthRoutes.map(key => ({
         key:key.path,
         label:key.path,
       })) as MenuProps['items'] ;
@@ -67,6 +67,7 @@ interface IPorps {
             return {
               key: key3.key,
               label: key3.label,
+              icon: key3.icon,
               // children:
             }
           })
@@ -75,6 +76,7 @@ interface IPorps {
          return { 
            key: key2.key,
            label: key2.label,
+           icon: key2.icon,
            children: ch2
           }
         }) 
@@ -83,6 +85,7 @@ interface IPorps {
         return {
           key: key1.path,
           label: key1.path,
+          icon: key1.icon,
           children:ch
         }
       }) as MenuProps['items'] ;
