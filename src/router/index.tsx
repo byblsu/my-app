@@ -13,10 +13,11 @@ import { MenuProps } from "antd";
 import Dashboard1 from "../pages/dashboard/select1/dashboard1";
 import Dashboard2 from "../pages/dashboard/select1/dashboard2";
 import { Component } from "react";
+const UserList = lazy(() => import("../pages/user/UserList"))
+// import UserList from "../pages/user/UserList";
 
 
 const Dashboard =lazy(() => import("../pages/Login/Login"))
-const UserList = lazy(() => import("../pages/user/UserList"))
 
 
 export interface IRoute {
@@ -77,6 +78,14 @@ export const unAuthRoutes: IRoute[] = [
         title: 'route.index',
         icon: <HomeOutlined/>, 
     },
+    {
+        key: '/user',
+        type: 'group',
+        path: '/user',
+        title: 'route.index',
+        component: <UserList/>
+
+    }
     // {
     //     type: 'group';
     //     path: '*',
@@ -143,21 +152,21 @@ export const leftBarRoutes: IRoute[] = [
 
     },
     {
-        key: '/user',
+        key: '/user1',
         type: 'group',
-        path: '/user',
+        path: '/user1',
         title: 'route.index',
         icon: <HomeOutlined/>,
-        component: <UserList/>,
+        // component: <UserList/>,
         children: [
             {
-                key: '/admin/userlist/select1',
-                label: '/admin/userlist/select1',
+                key: '/user',
+                label: '/user',
                 type: 'group',
-                path: '/admin/userlist/select1',
+                path: '/user',
                 title: 'route.index',
                 // icon: <HomeOutlined/>,
-                component: <Dashboard1/>
+                component: <UserList/>
             },
         ]
 

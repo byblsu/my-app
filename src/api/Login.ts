@@ -7,6 +7,10 @@ interface ResponseSuccess<T = {}> {
 }
 
 export const login = (admin: any) => {
+
+    console.log(request.post);
+    
+
     return request.post<any, ResponseSuccess<{token: string,msg: string}>>(
         "/admin/login",
          admin

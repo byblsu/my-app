@@ -13,7 +13,8 @@ request.interceptors.request.use((c) => {
     if (token) {
         c.headers = {
             ...c.headers,
-            Authorization: `Bearer ${token}`,
+            // Bearer 
+            Authorization: `${token}`,
         };
     }
     return c;

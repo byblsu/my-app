@@ -18,6 +18,8 @@ const request = axios.create({
 	timeout: 5000,
 });
 request.interceptors.request.use((c) => {
+
+	
 	const token = sessionStorage.getItem("token");
 	if (token) {
 		c.headers = {

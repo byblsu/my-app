@@ -18,7 +18,7 @@ class View extends Component {
       return (
         <>
         {
-          routes.map(r=> {
+          unAuthRoutes.map(r=> {
             if (r?.children){
               return (
                 <Fragment key={r.path}>
