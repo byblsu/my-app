@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { getUserList } from '../../api/User'
 import DeleteUser from './DeleteUser'
+import EditUser from './EditUser'
 
 interface IPorps extends RouteComponentProps {
 
@@ -20,7 +21,9 @@ interface IState{
   loading: boolean,
   current: number,
   pageSize: number,
-  total: number
+  total: number,
+  user?: IUser,
+  isShowEditUserModal:boolean
 }
 
  class UserList extends Component<IPorps,IState> {
@@ -32,7 +35,8 @@ interface IState{
       loading: true,
       current: 1,
       pageSize: 15,
-      total:0
+      total:0,
+      isShowEditUserModal: false,
     }
 
   }
@@ -66,12 +70,8 @@ interface IState{
         total: totalCount
       
       })
-
+      
       }
-    
-
-      
-      
       
       
     })
@@ -91,9 +91,32 @@ interface IState{
     })
   }
 
+  showEditUserModel=(user:IUser) => {
+    console.log('555showEditUserModel');
+    
+    console.log(user)
+
+    console.log('555showEditUserModel');
+    
+
+    this.setState({
+      isShowEditUserModal: true,
+      user: user
+    })
+  }
+
+  hideEditUserModal=() => {
+    this.setState({
+      isShowEditUserModal: false
+    })
+  }
+
   render() {
     return (
       <>
+        <EditUser user={this.state.user} 
+                  visible={this.state.isShowEditUserModal}
+                  cancel={this.hideEditUserModal} />
         <Table  dataSource={this.state.dataList}
                 rowKey={'id'}
                 loading={this.state.loading}
@@ -113,14 +136,12 @@ interface IState{
           <Table.Column title={'管理'} 
                         render={(user: IUser) => (
                            <Space>
-                            <Button type='primary' >编辑</Button>
-                            {/* <DeleteUser user={user} callback={this.cal}/> */}
+                            <Button type='primary' onClick={()=>{this.showEditUserModel(user)}} >编辑</Button>
+                            <DeleteUser user={user} callback={this.deleteUser}/>
                           </Space>
     )}
-    />
-
-          
-        
+    
+    />                
         </Table>
       </>
 

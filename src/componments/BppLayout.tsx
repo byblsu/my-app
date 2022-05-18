@@ -150,7 +150,7 @@ interface IPorps {
             
             {this.props.children}
           Content
-            {this.props.children}
+            {/* {this.props.children} */}
         </Content>
       </Layout>
     </Layout>
