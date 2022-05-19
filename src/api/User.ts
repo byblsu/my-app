@@ -1,3 +1,4 @@
+import { userInfo } from "os";
 import  request  from "../utils/request1"
 
 interface ResponseSuccess<T = {}> {
@@ -34,3 +35,17 @@ export const deleteUserList=(userId: number)=> {
 
 
 // delete<T = any, R = AxiosResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+
+export const updateUserById=(userId:number,user:any)=>{
+    return request.put<any, ResponseSuccess<{code: string,msg: string}>>('/admin/user/'+userId,{
+        data:user
+    })
+}
+
+export const addUser=(user:any)=>{
+
+    return request.post<any, ResponseSuccess<{code: string,msg: string}>>('/admin/user/add',{
+            date: user
+    })
+
+}

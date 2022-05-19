@@ -171,6 +171,12 @@ export const leftBarRoutes: IRoute[] = [
         ]
 
     },
+    {
+        path: 'admin',
+        title:'管理员管理',
+        key: 'amdin',
+        type: 'group'
+    }
 ]
 
 

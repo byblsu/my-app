@@ -2,6 +2,7 @@ import { Button, Space, Table } from 'antd'
 import React, { Component } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { getUserList } from '../../api/User'
+import AddUser from './AddUser'
 import DeleteUser from './DeleteUser'
 import EditUser from './EditUser'
 
@@ -24,6 +25,7 @@ interface IState{
   total: number,
   user?: IUser,
   isShowEditUserModal:boolean
+  isShowAddUserModal: boolean
 }
 
  class UserList extends Component<IPorps,IState> {
@@ -37,6 +39,7 @@ interface IState{
       pageSize: 15,
       total:0,
       isShowEditUserModal: false,
+      isShowAddUserModal: false
     }
 
   }
@@ -105,18 +108,63 @@ interface IState{
     })
   }
 
-  hideEditUserModal=() => {
+  hideEditUserModal=(refresh?: boolean) => {
+    if (refresh) {
+      console.log(666);
+      console.log(refresh);
+      console.log(666);
+      
+      
+      this.getUserList()
+    }
+
+    // console.log(666);
+    //   console.log(refresh);
+    //   console.log(666);
+
     this.setState({
+      
+      
       isShowEditUserModal: false
     })
   }
 
+  showAddUserModal=()=>{
+    this.setState({
+      isShowAddUserModal:true
+    })
+
+  }
+  hideAddUserModal=(refresh?:boolean)=>{
+
+    if (refresh) {
+      this.getUserList()
+    }
+
+    this.setState({
+      isShowAddUserModal: false
+    })
+  }
+
+
   render() {
     return (
       <>
+        <Button 
+            type='primary' 
+            onClick={this.showAddUserModal}
+            
+            >
+              添加用户
+        </Button>
+        <AddUser 
+            visible={this.state.isShowAddUserModal} 
+            cancel={this.hideAddUserModal}
+        />
         <EditUser user={this.state.user} 
                   visible={this.state.isShowEditUserModal}
-                  cancel={this.hideEditUserModal} />
+                  cancel={this.hideEditUserModal} 
+        />
         <Table  dataSource={this.state.dataList}
                 rowKey={'id'}
                 loading={this.state.loading}
