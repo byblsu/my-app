@@ -76,7 +76,7 @@ class View extends Component {
                 </AppLayout>
                 
               </Route> */}
-
+  
               <AppLayout>
                {this.generateRoute(leftBarRoutes)}
               </AppLayout>

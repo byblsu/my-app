@@ -12,6 +12,8 @@ import Login from "../pages/Login/Login";
 import { MenuProps } from "antd";
 import Dashboard1 from "../pages/dashboard/select1/dashboard1";
 import Dashboard2 from "../pages/dashboard/select1/dashboard2";
+import AdminList from "../pages/admin/AdminList";
+
 import { Component } from "react";
 const UserList = lazy(() => import("../pages/user/UserList"))
 // import UserList from "../pages/user/UserList";
@@ -85,7 +87,15 @@ export const unAuthRoutes: IRoute[] = [
         title: 'route.index',
         component: <UserList/>
 
-    }
+    },
+    {
+        path: '/min',
+        title: '管理员列表',
+        label: '/min',
+        key: '/min',
+        type: 'group',
+        component: <AdminList/>
+    },
     // {
     //     type: 'group';
     //     path: '*',
@@ -172,10 +182,21 @@ export const leftBarRoutes: IRoute[] = [
 
     },
     {
-        path: 'admin',
-        title:'管理员管理',
-        key: 'amdin',
-        type: 'group'
+        path: '/admin1',
+        title:'管理',
+        key: '/amdin1',
+        type: 'group',
+        icon: <HomeOutlined/>,
+        children: [
+            {
+                path: '/min',
+                title: '管理员列表',
+                label: '/min',
+                key: '/min',
+                type: 'group',
+                component: <AdminList/>
+            },
+        ]
     }
 ]
 
