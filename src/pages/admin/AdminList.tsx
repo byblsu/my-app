@@ -2,6 +2,7 @@ import { Button, Space, Table } from 'antd'
 import React, { Component } from 'react'
 import { getAdminList } from '../../api/admin'
 import DeleteAdmin from './DeleteAdmin'
+import EditAdmin from './EditAdmin'
 
 
  export interface IAdmin {
@@ -9,6 +10,7 @@ import DeleteAdmin from './DeleteAdmin'
     name: string
     mobile: string
     email: string
+    roleId: number
   }
 
   interface IState {
@@ -17,6 +19,8 @@ import DeleteAdmin from './DeleteAdmin'
     current: number
     pageSize: number
     total: number
+    admin?: IAdmin
+    isShowEditAdminModel: boolean
   }
 
 
@@ -30,6 +34,7 @@ import DeleteAdmin from './DeleteAdmin'
       current: 1,
       pageSize: 15,
       total: 0,
+      isShowEditAdminModel: false
     }
   }
 
@@ -62,11 +67,30 @@ import DeleteAdmin from './DeleteAdmin'
     }))
   }
 
+  showEditAdminModal=(admin:IAdmin)=>{
+    console.log(admin);
+    this.setState({
+      admin: admin,
+      isShowEditAdminModel: true
+    })
+  }
+
+  hideEditAdminModel=()=>{
+    this.setState({
+      isShowEditAdminModel: false
+    })
+  }
+
 
   render() {
     return (
       <>
-      
+      <EditAdmin 
+            admin={this.state.admin} 
+            visible={this.state.isShowEditAdminModel}
+            cancel={this.hideEditAdminModel}
+            
+      />
       <Table  dataSource={this.state.dataList}
                 rowKey={'id'}
                 loading={this.state.loading}
@@ -102,7 +126,7 @@ import DeleteAdmin from './DeleteAdmin'
                             title={'管理'}
                             render={(admin: IAdmin) => (
                               <Space>
-                                <Button type={'primary'} >编辑</Button>
+                                <Button type={'primary'} onClick={()=>{this.showEditAdminModal(admin)}} >编辑</Button>
                                 <DeleteAdmin admin={admin} callback={this.deleteAdmin}/>
                               </Space>
                             )}                    

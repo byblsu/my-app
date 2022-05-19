@@ -30,3 +30,14 @@ export const deleteAdminById=(adminId: number)=>{
 }
 
 
+export const updateAdminById=(adminId: number,admin:any)=>{
+
+    return request.put<any, ResponseSuccess<{code: string,msg: string}>>('/admin/admin/' + adminId ,{
+        data:admin,
+
+    })
+
+}
+
+
+
