@@ -96,6 +96,26 @@ export const unAuthRoutes: IRoute[] = [
         type: 'group',
         component: <AdminList/>
     },
+    {
+        key: '/admin/dashboard/select1/choose1',
+        label: '/admin/dashboard/select1/choose1',
+        type: 'group',
+        path: '/admin/dashboard/select1/choose1',
+        title: 'route.index',
+        // icon: <HomeOutlined/>,
+        component: <Dashboard1/>
+    },
+    {
+        key: '/admin/dashboard/select1/choose2',
+        label: '/admin/dashboard/select1/choose2',
+        type: 'group',
+        path: '/admin/dashboard/select1/choose2',
+        title: 'route.index',
+        // icon: <HomeOutlined/>,
+        component: <Dashboard2/>
+    }
+
+
     // {
     //     type: 'group';
     //     path: '*',
