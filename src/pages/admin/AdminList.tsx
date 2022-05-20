@@ -1,6 +1,7 @@
 import { Button, Space, Table } from 'antd'
 import React, { Component } from 'react'
 import { getAdminList } from '../../api/admin'
+import AddAdmin from './AddAdmin'
 import DeleteAdmin from './DeleteAdmin'
 import EditAdmin from './EditAdmin'
 
@@ -21,6 +22,7 @@ import EditAdmin from './EditAdmin'
     total: number
     admin?: IAdmin
     isShowEditAdminModel: boolean
+    isShowAddAdmiinModel: boolean
   }
 
 
@@ -34,7 +36,8 @@ import EditAdmin from './EditAdmin'
       current: 1,
       pageSize: 15,
       total: 0,
-      isShowEditAdminModel: false
+      isShowEditAdminModel: false,
+      isShowAddAdmiinModel: false
     }
   }
 
@@ -81,10 +84,29 @@ import EditAdmin from './EditAdmin'
     })
   }
 
+  showAddAdminModel = ()=>{
+    this.setState({
+      isShowAddAdmiinModel: true
+    })
+  }
+  hideAddAdminModel = (refresh?:boolean)=>{
+    if (refresh) {
+      this.getAdminList()
+    }
+    this.setState({
+      isShowAddAdmiinModel: false
+    })
+  }
+
 
   render() {
     return (
       <>
+      <Button type='primary' onClick={this.showAddAdminModel}>添加管理员</Button>
+      <AddAdmin 
+          visible={this.state.isShowAddAdmiinModel} 
+          cancel={this.hideAddAdminModel} 
+          />
       <EditAdmin 
             admin={this.state.admin} 
             visible={this.state.isShowEditAdminModel}

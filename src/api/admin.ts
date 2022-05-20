@@ -39,5 +39,14 @@ export const updateAdminById=(adminId: number,admin:any)=>{
 
 }
 
+export const adddAdmin1=(admin:any)=>{
+
+    return request.post<any, ResponseSuccess<{code: string,msg: string}>>('/admin/admin',{
+        data:admin,
+
+    })
+
+}
+
 
 
