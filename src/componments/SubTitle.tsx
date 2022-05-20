@@ -4,7 +4,9 @@ import { match } from 'assert'
 import React, { Component } from 'react'
 import { matchPath, RouteComponentProps, withRouter } from 'react-router-dom'
 import { IRoute, leftBarRoutes, unAuthRoutes } from '../router'
+import {Content} from './BppLayout'
 import './css/BppLayout.css'
+
 
 interface IPorps extends RouteComponentProps {
 
@@ -26,6 +28,7 @@ interface IState {
     static getRouterList(routes:IRoute[],path:string): IRoute[] {
         let arr: IRoute[] = []
         for (let r of unAuthRoutes) {
+
             if (r.children) {
                 arr.push(...SubTitle.getRouterList(r.children,path)) 
             }
@@ -38,6 +41,7 @@ interface IState {
             if (matchPath(path,r.path) !== null ) {
                 arr.push(r)
             }
+
         } 
         return arr
     }
@@ -51,9 +55,9 @@ interface IState {
     return (
       <>
         <Breadcrumb
-          style={{
-            margin: '16px 0',
-          }}
+          // style={{
+          //   margin: '16px 0',
+          // }}
         >
             {
                 this.state.routeList.map(r => (<Breadcrumb.Item key={r.path}>{r.path}</Breadcrumb.Item>))

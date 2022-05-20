@@ -2,29 +2,41 @@ import React, { Children, Component } from 'react'
 import { Breadcrumb, Layout, Menu, MenuProps } from 'antd'
 // import {  Content, Header } from 'antd/lib/layout/layout'
 // import Sider from 'antd/lib/layout/Sider'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined, NotificationOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import LeftBar from './LeftBar';
-import { leftBarRoutes, unAuthRoutes } from '../router';
+import { leftBarRoutes, TopBarRouter, unAuthRoutes } from '../router';
 import TopBar from './TopBar';
 import SubTitle from './SubTitle';
 import './css/BppLayout.css'
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header,  Footer, Sider,Content } = Layout;
+
 
 
 interface IPorps {
     children: any
 }
 
+interface IState {
+  collapsed: boolean
+}
 
- class AppLayout extends Component<IPorps> {
+
+ class AppLayout extends Component<IPorps,IState> {
 
 
+
+  constructor(props: any, context: any) {
+      super(props, context);
+      this.state={
+        collapsed:false
+      }
+  }
 
 
   render() {
 
-    const items1: MenuProps['items'] = unAuthRoutes.map(key => ({
+    const items1: MenuProps['items'] = TopBarRouter.map(key => ({
         key:key.path,
         label:key.path,
       })) as MenuProps['items'] ;
@@ -90,6 +102,11 @@ interface IPorps {
         }
       }) as MenuProps['items'] ;
 
+      const toggle = () => {
+        this.setState((state)=>({
+            collapsed:!state.collapsed
+        }))
+      }
 
 
     return (
@@ -122,7 +139,7 @@ interface IPorps {
         />
       </Sider>  */}
 
-      <LeftBar items3={items2}  ></LeftBar>
+      <LeftBar items3={items2} collapsed={this.state.collapsed} ></LeftBar>
       <Layout
         style={{
           padding: '0 24px 24px',
@@ -137,7 +154,17 @@ interface IPorps {
           <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb> */}
-        <SubTitle></SubTitle>        
+
+        <div style={{marginTop:'24px',display:'flex',justifyContent: 'flex-start', justifyItems: 'center'}}>
+          <span onClick={toggle} style={{margin:' 0 24px'}} >
+            {
+              this.state.collapsed?<RightOutlined /> : <LeftOutlined />
+            }
+          </span>
+          <SubTitle></SubTitle> 
+        </div>
+
+               
 
         <Content
           className="site-layout-background"
@@ -161,6 +188,6 @@ interface IPorps {
   }
 }
  
-export   {AppLayout,Sider,Footer,Header}
+export   {AppLayout,Sider,Footer,Header,Content}
 
 // export default Sider

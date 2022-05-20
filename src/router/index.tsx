@@ -56,6 +56,8 @@ export interface IRoute {
 // ]
 
 
+
+
 export const unAuthRoutes: IRoute[] = [
     {
         key: '/login',
@@ -123,6 +125,36 @@ export const unAuthRoutes: IRoute[] = [
     //     component: <Page404/>
     // }
 ]
+
+
+export const TopBarRouter: IRoute[] = [
+    {
+        key: '/login',
+        type: 'group',
+        path: '/login',
+        exact: true,
+        title: 'page404',
+        component: <Login/>,
+
+    },
+    {
+        key: '/user',
+        type: 'group',
+        path: '/user',
+        title: 'route.index',
+        component: <UserList/>
+
+    },
+    {
+        path: '/min',
+        title: '管理员列表',
+        label: '/min',
+        key: '/min',
+        type: 'group',
+        component: <AdminList/>
+    },
+]
+
 
 export const leftBarRoutes: IRoute[] = [
     {

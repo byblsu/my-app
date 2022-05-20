@@ -3,14 +3,15 @@ import React, { Component } from 'react'
 import Echarts from '../../../componments/Echarts';
 import * as echarts from 'echarts/core';
 // 引入柱状图图表，图表后缀都为 Chart
-import { BarChart } from 'echarts/charts';
+import { BarChart, PieChart } from 'echarts/charts';
 // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
   TitleComponent,
   TooltipComponent,
   GridComponent,
   DatasetComponent,
-  TransformComponent
+  TransformComponent,
+  LegendComponent
 } from 'echarts/components';
 // 标签自动布局，全局过渡动画等特性
 import { LabelLayout, UniversalTransition } from 'echarts/features';
@@ -20,7 +21,7 @@ import { Col, Row } from 'antd';
 
 class dashboard extends Component {
 
-    option=({
+    option1=({
       title: {
         text: 'ECharts 入门示例'
       },
@@ -38,6 +39,42 @@ class dashboard extends Component {
       ]
     });
 
+    option2 = {
+      title: {
+        text: 'Referer of a Website',
+        subtext: 'Fake Data',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left'
+      },
+      series: [
+        {
+          name: 'Access From',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 1048, name: 'Search Engine' },
+            { value: 735, name: 'Direct' },
+            { value: 580, name: 'Email' },
+            { value: 484, name: 'Union Ads' },
+            { value: 300, name: 'Video Ads' }
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+
      ext = [  TitleComponent,
       TooltipComponent,
       GridComponent,
@@ -46,7 +83,10 @@ class dashboard extends Component {
       BarChart,
       LabelLayout,
       UniversalTransition,
-      CanvasRenderer]
+      CanvasRenderer,
+      LegendComponent,
+      PieChart,
+    ]
 
 
 
@@ -56,10 +96,19 @@ class dashboard extends Component {
     <>
       <Row>
           <Col span={12}>
-              <Echarts option={this.option} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
+              <Echarts option={this.option1} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
           </Col>
           <Col span={12}>
-              <Echarts option={this.option} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
+              <Echarts option={this.option2} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
+          </Col>
+      </Row>
+
+      <Row>
+          <Col span={12}>
+              <Echarts option={this.option1} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
+          </Col>
+          <Col span={12}>
+              <Echarts option={this.option2} ext={this.ext} width={"300px"} height={'500px'}></Echarts>
           </Col>
       </Row>
     

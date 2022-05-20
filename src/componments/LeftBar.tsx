@@ -10,6 +10,7 @@ import { Menu } from 'antd'
 
 interface Iprop extends RouteComponentProps{
     items3: ItemType[] | undefined
+    collapsed: boolean
 }
 
  class LeftBar extends Component<Iprop> {
@@ -29,7 +30,7 @@ interface Iprop extends RouteComponentProps{
 
     return (
      <>
-        <Sider width={200} className="site-layout-background">
+        <Sider width={200} trigger={null} collapsed={this.props.collapsed} collapsible className="site-layout-background">
         <Menu
           mode="inline"
           onClick={this.myClick}
