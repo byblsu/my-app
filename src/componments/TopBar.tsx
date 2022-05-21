@@ -11,6 +11,7 @@ import { DownOutlined } from '@ant-design/icons'
 import {inject, observer} from 'mobx-react'
 import AdminStore from '../store/AdminStore'
 import { rm } from '../utils/storage'
+import { Notice } from '../pages/dashboard/select1/Notice'
 
 
 
@@ -78,6 +79,9 @@ interface IPorps extends RouteComponentProps {
     <Header className="header" style={{display:'flex'}} >
       <div className="logo" ></div>
 <Menu style={{flex: 'auto'}} theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={this.props.items4} onClick={this.myClick} />
+      
+      <Notice />
+
       <Dropdown overlay={menu}>
 {/* e => e.preventDefault() */}
       
