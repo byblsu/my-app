@@ -171,7 +171,23 @@ export const leftBarRoutes: IRoute[] = [
             title: 'route.index',
             // icon: <HomeOutlined/>,
             component: <Dashboard/>,
-            children: [
+            children: 
+            
+            // [                
+            //     {
+            //     key: '/admin/dashboard/select1/choose1',
+            //     label: '/admin/dashboard/select1/choose1',
+            //     type: 'group',
+            //     path: '/admin/dashboard/select1/choose1',
+            //     title: 'route.index',
+            //     // icon: <HomeOutlined/>,
+            //     component: <Dashboard1/>
+            //     },
+            // ]
+            
+            
+            
+            [
                 {
                     key: '/admin/dashboard/select1/choose1',
                     label: '/admin/dashboard/select1/choose1',
@@ -205,14 +221,14 @@ export const leftBarRoutes: IRoute[] = [
     ]
 
     },
-    {
-        key: '/login',
-        type: 'group',
-        path: '/login',
-        title: 'route.index',
-        icon: <HomeOutlined/>
+    // {
+    //     key: '/login',
+    //     type: 'group',
+    //     path: '/login',
+    //     title: 'route.index',
+    //     icon: <HomeOutlined/>
 
-    },
+    // },
     {
         key: '/user1',
         type: 'group',
