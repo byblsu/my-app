@@ -6,13 +6,19 @@ import { set } from "../../utils/storage"
 import { AxiosPromise } from "axios"
 import { request } from "https"
 import { RouteComponentProps, withRouter } from "react-router-dom"
+import AdminStore from "../../store/AdminStore"
+import { inject, Observer } from "mobx-react"
 // import { withRouter } from "react-router-dom"
 
-interface IPorps extends RouteComponentProps {}
+interface IPorps extends RouteComponentProps {
+  adminStore?:AdminStore
+}
 
 
 
-
+@inject('adminStore')
+// @ts-ignore
+@Observer
 class Login extends Component<IPorps> {
 
 
@@ -32,6 +38,8 @@ class Login extends Component<IPorps> {
         
         sessionStorage.setItem("token",response.data.token)
           message.success('success')
+          
+          this.props.adminStore?.initAdmin()
           console.log(response)
           console.log(response.msg)
           this.props.history.push('/dashboard')

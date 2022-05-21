@@ -8,8 +8,14 @@ import './css/BppLayout.css'
 import { Header } from './BppLayout'
 import { Dropdown, Space } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
+import {inject, observer} from 'mobx-react'
+import AdminStore from '../store/AdminStore'
+import { rm } from '../utils/storage'
+
+
 
 interface IPorps extends RouteComponentProps {
+    adminStore?:AdminStore
     items4: ItemType[] | undefined
     children: any
 } 
@@ -28,7 +34,8 @@ interface IPorps extends RouteComponentProps {
   render() {
 
     const logout = () => {
-      this.props.history.push('/login')
+      rm('token')
+      this.props.history.replace('/login')
       // history.pushState(_,)
     }
 
@@ -38,9 +45,11 @@ interface IPorps extends RouteComponentProps {
           {
             label: (
               // href="http://localhost:3000/login"
-              <a target="_blank" rel="noopener noreferrer" onClick={logout}>
-                1st menu item
-              </a>
+              // target="_blank"
+              // rel="noopener noreferrer"
+              <span   onClick={logout}>
+                退出
+              </span>
             ),
             key: '0',
           },
@@ -73,10 +82,12 @@ interface IPorps extends RouteComponentProps {
 {/* e => e.preventDefault() */}
       
     <a onClick={e => e.preventDefault()}>
-      <Space>
-        退出
+      {/* <Space> */}
+      
+        {this.props.adminStore?.admin.name} 
         <DownOutlined />
-      </Space>
+     
+      {/* </Space> */}
     </a>
   </Dropdown>
 
@@ -92,5 +103,6 @@ interface IPorps extends RouteComponentProps {
 }
 
 
-export default withRouter(TopBar)
+export default withRouter(inject('adminStore')(observer(TopBar)))
 
+// export default inject()(observer(TopBar))

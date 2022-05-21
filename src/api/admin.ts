@@ -48,5 +48,15 @@ export const adddAdmin1=(admin:any)=>{
 
 }
 
+// admin:any
+export const adddAdminInfo=()=>{
+
+    return request.get<any, ResponseSuccess<{code: string,msg: string}>>('/admin/admin/info',{
+        // data:admin,
+
+    })
+
+}
+
 
 

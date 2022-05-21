@@ -1,5 +1,5 @@
 import React, { Children, Component } from 'react'
-import { Breadcrumb, Layout, Menu, MenuProps } from 'antd'
+import { Alert, Breadcrumb, Layout, Menu, MenuProps, Spin } from 'antd'
 // import {  Content, Header } from 'antd/lib/layout/layout'
 // import Sider from 'antd/lib/layout/Sider'
 import { UserOutlined, LaptopOutlined, NotificationOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
@@ -8,6 +8,8 @@ import { leftBarRoutes, TopBarRouter, unAuthRoutes } from '../router';
 import TopBar from './TopBar';
 import SubTitle from './SubTitle';
 import './css/BppLayout.css'
+import AdminStore, { AdminStatus } from '../store/AdminStore';
+import { inject, observer } from 'mobx-react';
 
 const { Header,  Footer, Sider,Content } = Layout;
 
@@ -15,26 +17,45 @@ const { Header,  Footer, Sider,Content } = Layout;
 
 interface IPorps {
     children: any
+    adminStore?: AdminStore
+
 }
 
 interface IState {
   collapsed: boolean
 }
 
-
+@inject('adminStore')
+@observer
  class AppLayout extends Component<IPorps,IState> {
 
 
 
-  constructor(props: any, context: any) {
+  constructor(props: IPorps, context: any) {
       super(props, context);
       this.state={
         collapsed:false
       }
+      if (this.props.adminStore?.adminState === AdminStatus.UN_AUTH) {
+        this.props.adminStore?.initAdmin();
+      }
+
+      this.props.adminStore?.initAdmin()
   }
 
 
   render() {
+    if (this.props.adminStore?.adminState === AdminStatus.LOADING) {
+      return (
+        <>
+        <div className="example">
+          <Spin >
+          </Spin>
+        </div>
+        
+        </>
+      )
+    }
 
     const items1: MenuProps['items'] = TopBarRouter.map(key => ({
         key:key.path,
